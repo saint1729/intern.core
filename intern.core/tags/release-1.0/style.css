@@ -1,0 +1,550 @@
+body
+{
+	padding: 0 10px 20px 0;
+	background-color:#CAD2DB;
+	font-family: "times new roman";
+}
+
+#login
+{
+	font-size: 1.5em;
+	margin: 10px 0 0 0;
+	padding: 20px 0 20px 0;
+	float: left;
+	text-align: center;
+	width: 200px;
+	background-color: #CDE9FF;
+	-moz-border-radius: 15px;
+}
+#titre 
+{
+	float: left;
+	text-align: center;
+	margin: 0 0 0 20px;
+	padding: 0;
+}
+
+.bandeau
+{
+	clear: left;
+	display: none;
+}
+
+.formlogin
+{
+	clear:both;
+	margin: auto;
+	width: 300px;
+}
+
+.bandeau h1
+{
+	float: left;
+	text-align: center;
+	margin: 10px 0 0 220px;
+	padding: 10px 20px;
+	background: #CDE9FF;
+	-moz-border-radius: 15px;
+}
+
+.bandeau h2
+{
+	float: left;
+	text-align: center;
+	margin: 20px 0 0 20px;
+	width: 200px;
+	background: #CDE9EE;
+	-moz-border-radius: 15px;
+}
+
+p.errlog
+{
+	clear: both;
+	width: 200px ;
+	margin: 0 auto ;
+	padding: 100px 0 0 0;
+	text-align: center ;
+}
+table
+{
+	margin: 50px 0 0 0;
+}
+.etiquette
+{
+	clear: left;
+	text-align: right;
+	float: left;
+	width: 200px;
+}
+
+.produit
+{
+	width: 300px;
+	margin: 0 0 0 225px;
+	text-align: left;
+}
+
+.presentation a.inline
+{
+	background-color:#EEE;
+	text-decoration:none;
+	color: #000;
+	border: outset #EEE 2px;
+	text-align: center;
+	padding: 0 10px;
+  float: none;
+  clear: left;
+}
+
+.formadmin
+{
+	border:solid 2px #999;
+	text-align: right;
+	padding:10px;
+	width: 1000px;
+	margin: auto;
+	margin-top: 30px;
+	-moz-border-radius: 15px;
+}
+.formadmin div
+{
+	margin: 5px 0;
+	clear: left;
+}
+.formadmin div label
+{
+	float: left;
+	width: 200px;
+	text-align: right;
+}
+
+.formadmin div input, select, div textarea
+{
+	float: left;
+	text-align: left;
+	margin: 0 0 0 20px;
+}
+
+.mise_en_page
+{
+	float: left;
+	padding: 10px;
+	margin: 0 0 0 50px;
+	background-color:#DBE3EC;
+}
+.presentation
+{
+	float: left;
+	width: 770px;
+	padding: 0 0 30px 30px;
+	margin: 30px 0 0 0;
+	border: solid 2px #999;
+	-moz-border-radius: 15px;
+}
+.action
+{
+	width: 200px;
+	margin: 0 20px 0 0;
+	float: left;
+	float: left;
+}
+.action a,
+.action input
+{
+	margin: 5px;
+	width: 150px;
+
+}
+
+.presentation a
+{
+	margin: 0 0 0 10px;
+	padding:0;
+	width: 150px;
+	float:left;
+}
+
+.sumadmin
+{
+	float:left;
+	border:solid 1px blue;
+	text-align: left;
+	padding:10px;
+	margin:4px;
+	width: 30em;
+}
+
+.sumadmin em
+{
+	color: red;
+}
+#personnel
+{
+	clear: both;
+	border:solid 1px blue;
+	padding:10px;
+	margin:4px;
+	text-align: center;
+}
+
+#personnel table
+{
+	margin: 0 0 0 200px;
+}
+h1
+{
+	text-align: center;
+}
+
+h2
+{
+	text-align: center;
+}
+
+.firstcol
+{
+	width: 20em ;
+}
+
+#menu 
+{
+	width: 796px;
+	clear: left;
+	margin:-3px 0 0 0;
+        font-family:Tahoma, Verdana, sans-serif;
+        height: 32px;
+	background-color: #CAD2DB;
+	font-family:Tahoma, Verdana, sans-serif;
+	font-size: 1em;
+	color:#333333;
+	padding: 0em 0em 0em 0em;
+	border-left: solid 2px #999;
+	border-bottom: solid 2px #999;
+	border-right: solid 2px #999;
+}
+
+#menu ul
+{
+	z-index:1;
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+#menu li
+{
+	z-index:1;
+	float:left;
+	margin:0;
+	padding:0;
+	width: 132px;
+	text-align: center;
+}
+
+#menu a 
+{
+	z-index:1;
+	text-decoration: none;
+	color:#333333;
+	background-image: url(images/interface/fd_menu_horiz.gif);
+	background-repeat: repeat-x;
+	display:block;
+	padding:5px 15px 7px;
+	margin: 0em;
+	border-top: 0px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 0px solid #CCCCCC;
+	border-left: 1px solid #E8E8E8;
+}
+
+#veriflogin #li-customer a,
+#adnewcustomers #li-customer a,
+#adnewtask #li-task a,
+#adnewuser #li-user a,
+#newcustomers #li-customer a,
+#newtask #li-task a,
+#newuser #li-user a,
+#viewcustomers #li-customer a,
+#viewtask #li-task a,
+#viewuser #li-user a,
+#viewfourniture #li-fourniture a,
+#view_affect #li-affectation a,
+#viewmateriel #li-materiel a,
+#view_devis #li-devis a,
+#devis #li-devis a,
+#view_factures #li-facture a,
+#facture #li-facture a
+{
+	background: #444;
+	color: #DDD;
+	padding-bottom:5px;
+}
+
+/* grisage des menus inactif */
+{
+	background: #dbe3ec;
+	color: #999;
+}
+
+.grisage
+{
+	background-color: #dbe3ec;
+	color: #999;
+}
+
+
+.nouveau
+{
+	clear:left;
+	float: left;
+	width: 200px;
+	font-size:1.2em;
+	margin: 20px 20px 0 0;
+}
+
+a span {
+display: none;
+}
+
+a:hover span {
+display: inline; /* on affiche l'infobulle */
+   position: fixed;
+   white-space: nowrap; /* on change la valeur de la propriété white-space pour qu'il n'y ait pas de retour à la ligne non-désiré */
+   top: 230px; /* on positionne notre infobulle */
+   left: 220px;
+   background: white;
+   color: blue;
+   padding: 3px;
+   border: 1px solid blue;
+   border-left: 4px solid blue;
+  }
+
+.nouveau a, .nouveau div
+{
+	color: #111;
+	text-decoration: none;
+	display:block;
+	background:#AAA;
+	margin:15px 15px 4px 0;
+	padding:0 10px;
+}
+
+.nouveau div
+{
+float: left;
+}
+
+.nouveau label
+{
+	float: left;
+	width: 100px;
+	text-align: right;
+	margin: 0 10px 0 0;
+}
+.nouveau label.short
+{
+	clear: left;
+	width: 20px;
+}
+
+/*.nouveau form {
+	padding: 0px 15px 5px;
+	border: solid 1px #AAA;
+	margin: 0em;
+	background: #AAA;
+}*/
+
+.nouveau select
+{
+	width: 130px;
+	margin: 0;
+	float: left;
+}
+
+.nouveau input
+{
+	float: left;
+}
+
+.fintext
+{
+	text-align: center;
+	font-size: 0.7em;
+	clear: left;
+}
+
+/* pseudo tableau pour passer au validateur html avec des formulaire*/
+div.tableau 
+{
+	text-align: center;
+	padding: 1px;
+	border: solid 1px;
+	float: left;
+}  
+
+.tableau div input, 
+.tableau div form 
+{
+	margin: 0 auto;
+}
+
+.tableau .corps span,
+.tableau .entete span 
+{
+	display:block;
+	float:left;
+	width:110px;
+	height:50px;
+	margin: 1px;
+	overflow:auto;
+	border:1px solid black;
+}
+
+.tableau .corps span
+{
+	padding: 15px 0 0 0;
+}
+
+.tableau .corps span.email,
+.tableau .entete span.email
+{
+	width: 150px;
+}
+
+.tableau span.responsable input
+{
+	margin: 8px 0 0 50px;
+}
+.tableau .corps form,
+.tableau .corps p,
+.tableau .entete p
+{	
+	margin: 0;
+	clear:both;
+}
+
+.clear
+{
+	display:block;
+	clear:both;
+	visibility:hidden;
+}
+.etiquette,
+label,
+.entete span,
+th
+{
+	font-style: italic;
+}
+.legter 
+{
+	background-color: #888;
+}
+.legdev {
+  background-color: #5D5;
+}
+.legret 
+{
+	background-color: #D55;
+}
+.legvert
+{
+  background-color: #5D5;
+}
+
+
+a.bouton,
+a:visited.bouton
+{
+	display: block;
+	background-color:#EEE;
+	text-decoration:none;
+	color: #000;
+	border: outset #EEE 2px;
+	text-align: center;
+	padding: 0;
+}
+
+table.client caption
+{
+	margin: 60px 0 0 0;
+}
+
+table.devis
+{
+	text-align: center;
+}
+
+.DEVIS
+{
+	float: left;
+	padding: 0 0 0 60px;
+	clear: left;
+	font-size: 3em;
+}
+
+.formadmin .coor_client
+{
+	clear: none;
+	float: right;
+	text-align: left;
+	width: 400px;
+	margin:50px 100px 0 0;
+	padding: 0 0 0 10px;
+	border: solid 1px;
+}
+.formadmin table.presentation-devis
+{
+	width: 100%;
+	text-align: center;
+}
+
+.formadmin table.presentation-devis tr.presentation-devis
+{
+	border: solid 1px;
+}
+
+.formadmin .info
+{
+	text-align: left;
+}
+
+.formadmin .footer
+{
+	clear: both;
+	text-align: left;
+	padding-top: 20px;
+}
+
+.coor_client h1
+{
+	font-size: 1.5em;
+	text-align: left;
+	
+}
+
+.logo_devis
+{
+	clear: none;
+	float: left;
+}
+
+table.analyse 
+{
+  margin: auto;
+  border: outset 1px;
+}
+
+table.analyse td,
+table.analyse th
+{
+  border: inset 1px;
+}
+table.analyse td
+{
+  text-align: right;
+}
+
+form.inline {
+  display: inline;
+}

@@ -1,0 +1,2 @@
+alter table T_TYPE add TYP_COEF tinyint(3) unsigned;
+alter table T_TYPE add TYP_PUHT decimal(5,2) unsigned;

@@ -1,0 +1,25 @@
+git remote set-url origin git://github.com/sympy/sympy.git
+
+
+
+error: Your local changes to the following files would be overwritten by merge:
+	sympy/functions/special/gamma_functions.py
+Please, commit your changes or stash them before you can merge.
+Aborting
+
+
+
+doing 'git stash' allows you to save changes without committing them
+
+
+
+git diff
+
+
+git diff --cached
+
+
+git pull origin
+
+
+gitch checkout -b <new_branch>

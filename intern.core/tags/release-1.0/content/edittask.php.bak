@@ -1,0 +1,103 @@
+<?php
+	if (isset($_GET["showcustomer"]))
+	{
+		$int_id=$_GET["showcustomer"];
+	}
+	elseif (isset($_GET["hidecustomer"]))
+	{
+		$int_id=$_GET["hidecustomer"];
+	}
+	else
+	{
+		$int_id = $_POST["int_id"];
+	}
+	//connexion à la base de donnée 
+	mysqlinforezo();
+	//vérification : récupération des infos intervention
+	$sql = "SELECT T_INTERVENTION.INT_OBSERVATION, T_INTERVENTION.INT_DESCRIPTION, T_CLIENT.CLI_SOCIETE, T_CLIENT.CLI_TELEPHONE, T_CLIENT.CLI_ADRESSE, T_CLIENT.CLI_VILLE, T_CLIENT.CLI_CODE_POSTAL, T_INTERVENTION.INT_DATE_BUTOIRE, T_INTERVENTION.INT_STATUS, T_INTERVENTION.INT_TYPE, T_INTERVENTION.USE_ID  FROM T_INTERVENTION INNER JOIN T_CLIENT ON T_INTERVENTION.CLI_ID=T_CLIENT.CLI_ID  WHERE T_INTERVENTION.INT_ID=$int_id;";
+	$query = mysql_query($sql) or die( 'Erreur lors de la vérification des données'.$sql );
+	$list = mysql_fetch_array( $query );
+	//attribution des variables
+	$int_description = utf8_encode($list['INT_DESCRIPTION']);
+	$cli_societe = utf8_encode($list['CLI_SOCIETE']);
+	$int_date_butoire = DateUsToFr($list['INT_DATE_BUTOIRE']);
+	$int_description = utf8_encode($list['INT_DESCRIPTION']);
+	$int_observation = utf8_encode($list['INT_OBSERVATION']);
+	$int_status = $list['INT_STATUS'];
+	$int_type = $list['INT_TYPE'];
+	$use_id = $list['USE_ID'];
+	 $cli_telephone = $list['CLI_TELEPHONE'];
+	 $cli_adresse = $list['CLI_ADRESSE'];
+	 $cli_ville = $list['CLI_VILLE'];
+	 $cli_code_postal = $list['CLI_CODE_POSTAL'];
+	
+	if ($_GET["showcustomer"] != "")
+	{
+		$link= '<a href="./index.php?contenu=edittask&hidecustomer='.$int_id.'">'.$cli_societe.'</a>';
+		$customer = '
+			<div class="formadmin">
+				<h2> Coordoneés du client </h2>
+				<p>Télephone:'. $cli_telephone.' </p>
+				<p>Adresse: '.$cli_adresse.' <br> '.$cli_code_postal.' '.$cli_ville.' </p>
+		</div> ';
+	}
+	else
+	{
+		$link= '<a href="./index.php?contenu=edittask&showcustomer='.$int_id.'">'.$cli_societe.'</a>';		
+	}
+	
+	echo 
+		'<div class="formadmin">
+			<form method="post" action="./index.php?contenu=updatetask">
+				<h2>Voir la tache</h2>
+				<p>Client : '.$link.'</p>
+				<p>
+       				A faire par:
+					<select name="use_id">';
+   				$sql = 'SELECT USE_ID, USE_LOGIN FROM T_USER order by USE_LOGIN;';
+               	$query = mysql_query($sql) or die( 'Erreur' );
+               	$nb = mysql_num_rows($query);
+               	while ( $list = mysql_fetch_array( $query ) )
+					{
+						$u="";
+						if ($list['USE_ID'] == $use_id) $u="selected";
+               			echo '<option value="'.$list['USE_ID'].'" '.$u.'>'.$list['USE_LOGIN'].'</option>';
+               		}
+               	echo'
+              </select>
+        </p>
+        <p>Description: <textarea name="int_description" rows="4" cols="50"  wrap="virtual"  maxlength=200>'.$int_description.'</textarea></p>
+        <p>Observation: <textarea name="int_observation" rows="4" cols="50"  wrap="virtual"  maxlength=200>'.$int_observation.'</textarea></p>
+        <p> Etat:
+        	<select name="int_status">';
+   				$s1=$s2=$s3 = "";
+				if ($int_status==0)
+				{
+					 $s0="selected";
+				}
+				else if ($int_status==1)
+				{
+					$s1="selected";
+				}
+				else if ($int_status==2)
+				{
+					$s2="selected";
+				}
+               	echo 
+               		'<option value="0" '.$s0.'>Pas commencé</option>
+               		<option value="1" '.$s1.'>Commencé </option>
+               		<option value="2" '.$s2.'>Terminé </option>
+        </select>
+    </p>
+    <p>Avant le <input type="text" name="int_date_butoire" value="'.$int_date_butoire.'"size="12"maxlength=10></p>
+    <p>Type de tâche';
+			$listetypes = funcEnumList("T_INTERVENTION", "INT_TYPE");
+			$formselect = funcMakeFormList( 'int_type', $listetypes, $int_type);
+			echo $formselect.'  
+						
+    <input type="hidden" name="int_id" value ='.$int_id.'>
+    <input type="submit" value="OK">
+	</form>
+		</div> ';
+		echo $customer;
+?>

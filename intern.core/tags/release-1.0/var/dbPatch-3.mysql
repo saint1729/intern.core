@@ -1,0 +1,1 @@
+alter table T_INTERVENTION add INT_DEPLACEMENT enum('Télémaintenance', 'Déplacement', 'Grand Déplacement');

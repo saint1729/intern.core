@@ -1,0 +1,24 @@
+explore git
+  git init
+  
+  git diff
+  git add - staging area
+  git status - to see what has been added to the staging area
+  git commit
+    how do we make a commit
+  
+  git checkout
+  git log
+  
+  learn about commits, branches, and HEAD
+  git branch
+  
+  tell git about yourself (name, email)
+  simple workflow: start working on a new branch, based on master
+  
+sympy
+  create a neville branch
+  make all your changes there
+  write good commit message
+  push to github
+  open a pull request

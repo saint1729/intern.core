@@ -1,0 +1,1 @@
+INSERT INTO T_USER (USE_LOGIN, USE_PRENOM, USE_PWD, USER_RIGHTS) VALUES ('admin', 'admin', MD5('admin'), '4');

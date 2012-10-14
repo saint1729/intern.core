@@ -1,0 +1,1 @@
+alter table T_INTERVENTION add DEV_ID int(10) unsigned;

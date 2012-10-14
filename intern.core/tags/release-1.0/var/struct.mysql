@@ -1,0 +1,317 @@
+-- MySQL dump 10.9
+--
+-- Host: localhost    Database: inforezo
+-- ------------------------------------------------------
+-- Server version	4.1.15-Debian_1ubuntu5-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+--
+-- Table structure for table `L_CLI_CON`
+--
+
+DROP TABLE IF EXISTS `L_CLI_CON`;
+CREATE TABLE `L_CLI_CON` (
+  `CLI_CON_ID` int(11) NOT NULL auto_increment,
+  `CLI_ID` int(11) default NULL,
+  `CON_ID` int(11) default NULL,
+  PRIMARY KEY  (`CLI_CON_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Table structure for table `L_CLI_FOU`
+--
+
+DROP TABLE IF EXISTS `L_CLI_FOU`;
+CREATE TABLE `L_CLI_FOU` (
+  `CLI_FOU_ID` int(11) default NULL,
+  `CLI_ID` int(11) default NULL,
+  `FOU_ID` int(11) default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `T_CLIENT`
+--
+
+DROP TABLE IF EXISTS `T_CLIENT`;
+CREATE TABLE `T_CLIENT` (
+  `CLI_ID` int(10) unsigned NOT NULL auto_increment,
+  `CLI_CODE_NAF` varchar(5) NOT NULL default '',
+  `CLI_NO_TVA` varchar(30) NOT NULL default '',
+  `CLI_CODE_POSTAL` varchar(5) NOT NULL default '',
+  `CLI_VILLE` varchar(20) NOT NULL default '',
+  `CLI_ADRESSE` varchar(200) NOT NULL default '',
+  `CLI_SOCIETE` varchar(50) default NULL,
+  `CLI_TELECOPIE` varchar(20) default NULL,
+  `CLI_TELEPHONE` varchar(20) default NULL,
+  `CLI_TYPE` enum('Prospect','Entreprise','Particulier','Association','Client perdu') default NULL,
+  `CLI_ECHEANCES` enum('A reception','30 jours Ã  reception','30 jours fin de mois le 10','30 jours fin de mois','60 jours fin de mois le 10','60 jours fin de mois') default NULL,
+  `CLI_NB_FACTURE` smallint(5) unsigned default NULL,
+  `CLI_NB_POSTE` smallint(5) unsigned default NULL,
+  `CLI_TECH_ID` tinyint(3) unsigned default NULL,
+  `CLI_PWD` varchar(50) default 'pass',
+  `CLI_MAINTENANCE` enum('Oui','Non','Client') default 'Non',
+  `CLI_A_SAVOIR` blob,
+  `CLI_REZO_BOX` decimal(10,2) unsigned default NULL,
+  `CLI_REZO_BACKUP` decimal(10,2) unsigned default NULL,
+  `CLI_ECHEANCES_ABO` enum('mois','trimestre','semestre','annÃ©e') default NULL,
+  `CLI_MTT_MAINTENANCE` decimal(10,2) unsigned default NULL,
+  `CLI_SIRET` text,
+  `CLI_PREMIERE_ECHEANCE` enum('Janvier','Fevrier','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','DÃ©cembre') default 'Janvier',
+  PRIMARY KEY  (`CLI_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `T_CONTACT`
+--
+
+DROP TABLE IF EXISTS `T_CONTACT`;
+CREATE TABLE `T_CONTACT` (
+  `CON_ID` int(11) NOT NULL auto_increment,
+  `CLI_ID` int(10) unsigned default NULL,
+  `CON_PRENOM` varchar(20) NOT NULL default '',
+  `CON_NOM` varchar(20) NOT NULL default '',
+  `CON_CIVILITE` enum('Monsieur','Mademoiselle','Madame') NOT NULL default 'Monsieur',
+  `CON_EMAIL` varchar(50) default NULL,
+  `CON_TELEPHONE` varchar(20) NOT NULL default '',
+  `CON_TELECOPIE` varchar(20) default NULL,
+  `CON_PORTABLE` varchar(20) default NULL,
+  `CON_AUTRE` varchar(20) default NULL,
+  `CON_RESPONSABLE` tinyint(1) default NULL,
+  PRIMARY KEY  (`CON_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `T_DEALER`
+--
+
+DROP TABLE IF EXISTS `T_DEALER`;
+CREATE TABLE `T_DEALER` (
+  `DEA_ID` int(11) NOT NULL auto_increment,
+  `DEA_NOM` varchar(20) default NULL,
+  `DEA_TELEPHONE` varchar(20) default NULL,
+  `DEA_TELECOPIE` varchar(20) default NULL,
+  `DEA_EMAIL` varchar(30) default NULL,
+  `DEA_SITE` varchar(30) default NULL,
+  PRIMARY KEY  (`DEA_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `T_DEPLACEMENT`
+--
+
+DROP TABLE IF EXISTS `T_DEPLACEMENT`;
+CREATE TABLE `T_DEPLACEMENT` (
+  `DEP_ID` int(11) NOT NULL auto_increment,
+  `DEP_VILLE` char(20) default NULL,
+  `DEP_PRIX` int(11) default NULL,
+  `DEP_KM` int(11) default NULL,
+  PRIMARY KEY  (`DEP_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `T_DEVIS`
+--
+
+DROP TABLE IF EXISTS `T_DEVIS`;
+CREATE TABLE `T_DEVIS` (
+  `DEV_ID` int(10) unsigned NOT NULL auto_increment,
+  `CLI_ID` int(10) unsigned default NULL,
+  `CON_ID` int(10) unsigned default NULL,
+  `DEV_TITRE` varchar(255) default NULL,
+  `DEV_ACOMPTE` enum('0','30','40','50') default NULL,
+  `DEV_INFO` varchar(255) default NULL,
+  `DEV_DATE_CREA` date default NULL,
+  `DEV_DATE_MODIF` date default NULL,
+  `DEV_STATUT` enum('En cours','SignÃ©','Ã€ facturer','Perdu','ClassÃ©') default NULL,
+  PRIMARY KEY  (`DEV_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `T_FACTURE`
+--
+
+DROP TABLE IF EXISTS `T_FACTURE`;
+CREATE TABLE `T_FACTURE` (
+  `FAC_ID` int(10) unsigned NOT NULL auto_increment,
+  `CLI_ID` int(10) unsigned default NULL,
+  `CON_ID` int(10) unsigned default NULL,
+  `FAC_TITRE` varchar(200) default NULL,
+  `FAC_DATE_CREA` date default NULL,
+  `FAC_INFO` varchar(255) default NULL,
+  `FAC_STATUT` enum('Ã€ imprimer','En attente de reglement','ReglÃ©e','Lettre simple','Lettre AR','ImpayÃ©e') default NULL,
+  `FAC_SUIVI` enum('Aucun','TÃ©lÃ©phone','Lettre simple','Lettre AR') default NULL,
+  `FAC_DATE_SUIVI` date default NULL,
+  PRIMARY KEY  (`FAC_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `T_FOURNITURE`
+--
+
+DROP TABLE IF EXISTS `T_FOURNITURE`;
+CREATE TABLE `T_FOURNITURE` (
+  `FOU_ID` int(11) NOT NULL auto_increment,
+  `CLI_ID` int(11) default NULL,
+  `FOU_DESIGNATION` varchar(200) default NULL,
+  `FOU_SN` varchar(10) default NULL,
+  `FOU_QTT` smallint(5) unsigned default NULL,
+  `FOU_TYPE` enum('Materiel','Logiciel','Licence') default 'Materiel',
+  `FOU_NO_CMD` varchar(20) default NULL,
+  PRIMARY KEY  (`FOU_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `T_INTERVENTION`
+--
+
+DROP TABLE IF EXISTS `T_INTERVENTION`;
+CREATE TABLE `T_INTERVENTION` (
+  `INT_ID` int(10) unsigned NOT NULL auto_increment,
+  `CLI_ID` int(10) unsigned default NULL,
+  `USE_ID` smallint(6) NOT NULL default '0',
+  `INT_CREATEUR_ID` int(10) unsigned default NULL,
+  `INT_DESCRIPTION` text,
+  `INT_RAPPORT` text,
+  `INT_STATUS` enum('A traiter','TerminÃ©') default 'A traiter',
+  `INT_DATE_INTERVENTION` timestamp NOT NULL default '0000-00-00 00:00:00',
+  `INT_DATE_CREA` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  `INT_DATE_CLOTURE` date default NULL,
+  `INT_TYPE` enum('Maintenance','DÃ©pannage','Intervention','TÃ©lÃ©maintenance','Assistance tÃ©lÃ©phonique') default NULL,
+  `INT_TPS_PASSE` int(10) unsigned default NULL,
+  `DEP_ID` int(10) unsigned default NULL,
+  `INT_START` timestamp NOT NULL default '0000-00-00 00:00:00',
+  `INT_END` timestamp NOT NULL default '0000-00-00 00:00:00',
+  `INT_DEPLACEMENT` enum('Télémaintenance','Déplacement','Grand Déplacement'),
+  PRIMARY KEY  (`INT_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `T_LIGNE_DEVIS`
+--
+
+DROP TABLE IF EXISTS `T_LIGNE_DEVIS`;
+CREATE TABLE `T_LIGNE_DEVIS` (
+  `LDE_ID` int(10) unsigned NOT NULL auto_increment,
+  `DEV_ID` int(10) unsigned default NULL,
+  `TYP_ID` varchar(50) default NULL,
+  `LDE_DESIGNATION` text,
+  `LDE_QTT` tinyint(3) unsigned default NULL,
+  `LDE_PRIX_ACHAT` decimal(10,2) default NULL,
+  `LDE_PRIX_VENTE` decimal(10,2) default NULL,
+  PRIMARY KEY  (`LDE_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `T_LIGNE_FACTURE`
+--
+
+DROP TABLE IF EXISTS `T_LIGNE_FACTURE`;
+CREATE TABLE `T_LIGNE_FACTURE` (
+  `LFA_ID` int(10) unsigned NOT NULL auto_increment,
+  `FAC_ID` int(10) unsigned default NULL,
+  `TYP_ID` tinyint(3) unsigned default NULL,
+  `LFA_DESIGNATION` text,
+  `LFA_QTT` tinyint(4) default NULL,
+  `LFA_PRIX_HT` decimal(10,2) default NULL,
+  `LFA_NO_SERIE` varchar(20) default NULL,
+  `LFA_PRIX_ACHAT` decimal(10,2) default NULL,
+  PRIMARY KEY  (`LFA_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `T_NO_SERIE`
+--
+
+DROP TABLE IF EXISTS `T_NO_SERIE`;
+CREATE TABLE `T_NO_SERIE` (
+  `NO_SERIE` varchar(20) NOT NULL default '',
+  `FOU_ID` int(11) default NULL,
+  `NO_SERIE_ID` int(11) NOT NULL auto_increment,
+  PRIMARY KEY  (`NO_SERIE_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `T_PARAMS`
+--
+
+DROP TABLE IF EXISTS `T_PARAMS`;
+CREATE TABLE `T_PARAMS` (
+  `PAR_ID` int(3) NOT NULL auto_increment,
+  `PAR_A_SAVOIR` blob,
+  PRIMARY KEY  (`PAR_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `T_TVA`
+--
+
+DROP TABLE IF EXISTS `T_TVA`;
+CREATE TABLE `T_TVA` (
+  `TVA_ID` int(11) NOT NULL auto_increment,
+  `TVA_TAUX` decimal(5,2) default NULL,
+  `TVA_COMPTE` varchar(20) default NULL,
+  `TVA_LIBELLE` varchar(255) default NULL,
+  PRIMARY KEY  (`TVA_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `T_KEY`
+--
+
+DROP TABLE IF EXISTS `T_KEY`;
+CREATE TABLE `T_KEY` (
+    `KEY_KEY` blob
+    ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `T_TYPE`
+--
+
+DROP TABLE IF EXISTS `T_TYPE`;
+CREATE TABLE `T_TYPE` (
+  `TYP_ID` tinyint(3) unsigned NOT NULL auto_increment,
+  `TYP_TYPE` varchar(255) default NULL,
+  `TYP_TVA_TAUX` decimal(5,2) default NULL,
+  `TYP_TVA_COMPTE` varchar(10) default NULL,
+  `TYP_COMPTE` varchar(10) default NULL,
+  `TYP_COEF` decimal(5,2) default NULL,
+  `TYP_PUHT` decimal(5,2) unsigned default NULL,
+  PRIMARY KEY  (`TYP_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `T_USER`
+--
+
+DROP TABLE IF EXISTS `T_USER`;
+CREATE TABLE `T_USER` (
+  `USE_ID` smallint(6) NOT NULL auto_increment,
+  `USE_LOGIN` varchar(20) NOT NULL default '',
+  `USE_PWD` varchar(50) NOT NULL default '',
+  `USE_PRENOM` varchar(20) default NULL,
+  `USE_NOM` varchar(20) default NULL,
+  `USE_PORTABLE_PRO` varchar(10) default NULL,
+  `USE_PORTABLE_PERSO` varchar(10) default NULL,
+  `USE_EMAIL` varchar(30) default NULL,
+  `USER_RIGHTS` tinyint(1) default '0',
+  `USE_VISIBLE` tinyint(1) default '1',
+  PRIMARY KEY  (`USE_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='les utilisateurs de inforezo';
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+

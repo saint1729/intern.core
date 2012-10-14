@@ -1,0 +1,5 @@
+create table T_TYPE (TYP_ID tinyint(3) unsigned primary key auto_increment, TYP_TYPE varchar(255), TYP_TVA_TAUX decimal(5,2), TYP_TVA_COMPTE varchar(10), TYP_COMPTE varchar(10));
+alter table T_LIGNE_DEVIS CHANGE LDE_TYPE TYP_ID tinyint(3) unsigned;
+alter table T_LIGNE_FACTURE CHANGE LFA_TYPE TYP_ID tinyint(3) unsigned;
+alter table T_LIGNE_FACTURE DROP LFA_ORDER;
+alter table T_LIGNE_FACTURE DROP TVA_ID;
