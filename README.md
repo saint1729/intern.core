@@ -2,4 +2,4 @@ intern.core
 ===========
 
 
-This web application simply solves different kinds of problems in civil engineering topic RCC Structures.
+This web application is useful to solve different kinds of problems in Civil Engineering topic "Design of RC Structures" and render the solutions in form of a pdf.
